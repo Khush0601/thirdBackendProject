@@ -1,44 +1,45 @@
 const mongoose=require("mongoose")
-
-const userSchema=new mongoose.Schema({
+const userschema=new mongoose.Schema({
     name:{
         type:String,
         required:true,
+
     },
-    Email:{
+    email:{
         type:String,
         required:true,
         unique:true,
-        minlength:10,
-        lowercase:true,
+
     },
     userId:{
         type:String,
         required:true,
         unique:true,
-        minlength:8,
     },
     password:{
         type:String,
         required:true,
-        minlength:8,
     },
     userType:{
         type:String,
         required:true,
-        default:'BUYER'
+        default:()=>{
+            return 'CUSTOMER'
+        }
     },
-    createAt:{
+    createdAt:{
+        type:Date,
         default:()=>{
             return Date.now()
         },
-        immutable:true,
+        immutable:true
     },
     updatedAt:{
+        type:Date,
         default:()=>{
             return Date.now()
-        },
-       
+        }
     }
 
 })
+module.exports=mongoose.model('user',userschema)
