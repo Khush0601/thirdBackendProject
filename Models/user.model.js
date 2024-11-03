@@ -23,9 +23,15 @@ const userschema=new mongoose.Schema({
     userType:{
         type:String,
         required:true,
+        enum:['CUSTOMER','ADMIN'],
         default:()=>{
             return 'CUSTOMER'
         }
+    },
+    productList:{
+       type:[mongoose.SchemaTypes.ObjectId],
+       ref:"products",
+       default:[]
     },
     createdAt:{
         type:Date,
