@@ -7,12 +7,12 @@ try{
         email:req.body.email,
         userId:req.body.userId,
         password:bcrypt.hashSync(req.body.password,8),
-        userType:req.body.userType,
+        
      }
      console.log(userObj)
      const savingUser=await UserModel.create(userObj)
      const message={
-        message:' register successfully'
+        message:'register successfully'
       }
       if(savingUser){
          return res.status(201).send(message)
@@ -26,7 +26,7 @@ try{
 catch(err){
     console.log("error while registering user",err.message)
     res.status(500).send({
-     message:"some internal error while registering"
+     message:err?.message??"some internal error while registering"
  })
      
 }
