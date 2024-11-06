@@ -7,7 +7,6 @@ try{
         email:req.body.email,
         userId:req.body.userId,
         password:bcrypt.hashSync(req.body.password,8),
-        
      }
      console.log(userObj)
      const savingUser=await UserModel.create(userObj)
@@ -42,7 +41,7 @@ const validUserData=await UserModel.findOne({userId:userIdFromReq})
 // console.log(validUserData)
 //if userid is not present in databse
 if(!validUserData){
-   res.status(401).send({
+  return res.status(401).send({
       message:"invalid Credentials"
    })
 }
@@ -50,7 +49,7 @@ if(!validUserData){
 const isValidPassword=bcrypt.compareSync(passwordFromReq,validUserData.password)
 //if entered password is wrong
 if(!isValidPassword){
-   res.status(401).send({
+  return res.status(401).send({
       message:"invalid crendentials"
    })
 }
