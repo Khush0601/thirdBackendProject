@@ -58,7 +58,7 @@ exports.getproductById=async(req,res)=>{
     })
  }
  else{
-  res.status(200).send(productDetailsById)
+   return res.status(200).send(productDetailsById)
  }
  }
  catch(e){
