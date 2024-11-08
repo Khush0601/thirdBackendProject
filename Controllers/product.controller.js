@@ -1,4 +1,6 @@
+const productModel = require('../Models/product.model')
 const ProductModel=require('../Models/product.model')
+const mongoose=require("mongoose")
 exports.createProduct=async(req,res)=>{
     console.log(req.body)
    try{
@@ -37,5 +39,31 @@ exports.getProduct=async(req,res)=>{
     res.status(500).send({
         message:e.message??'server error'
     })
+ }
+}
+
+exports.getproductById=async(req,res)=>{
+  const productId=req.params.productId
+  if(!mongoose.Types.ObjectId.isValid(productId)){
+    return res.status(400).send({
+      message:'invalid ProductId'
+    })
+  }
+ try{
+  const productDetailsById=await productModel.findById(productId)
+  console.log(productDetailsById)
+  if(!productDetailsById){
+     return res.status(404).send({
+      message:'product not found'
+    })
+ }
+ else{
+  res.status(200).send(productDetailsById)
+ }
+ }
+ catch(e){
+  res.status(500).send({
+    message:e.message??'server error'
+})
  }
 }
