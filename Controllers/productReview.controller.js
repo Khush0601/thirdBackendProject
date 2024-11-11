@@ -14,7 +14,7 @@ try{
         userName:saveReview.userName,
         userId:saveReview.userId,
         userImage:saveReview.userImage,
-        message:saveReview.reviewMessage,
+        reviewMessage:saveReview.reviewMessage,
         productId:saveReview.productId
 }
     res.status(201).send(requiredReviewData)
@@ -22,5 +22,18 @@ try{
 
 catch(e){
  res.status(500).send(e.message)
+}
+}
+
+exports.getReviewOfProductId=async(req,res)=>{
+    const productId=req.params.productId
+try{
+    const review=await ProductReviewModel.find({productId})
+    res.status(200).send(review)
+ }
+catch(e){
+    res.status(500).send({
+        message:e.message??'server error'
+    })
 }
 }

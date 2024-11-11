@@ -8,16 +8,14 @@ const reviewSchema=new mongoose.Schema({
       type:String,
     },
     userId:{
-      type:String,
-    //   mongoose.SchemaTypes.ObjectId
-    //   ref:'user',
+      type:mongoose.SchemaTypes.ObjectId,
+      ref:'user',
       required:true
     },
 
     productId:{
-        type:String,
-        // // mongoose.SchemaTypes.ObjectId do it after getting productId
-        // ref:'product',
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:'product',
         required:true
     },
     reviewMessage:{
