@@ -1,5 +1,5 @@
 const ProductReviewModel=require("../Models/ProductReview.model")
-
+ const ProductModel=require("../Models/product.model")
 exports.addReview=async(req,res)=>{
 try{
     const reviewDetailsFromReq={
@@ -9,7 +9,10 @@ try{
         reviewMessage:req.body.reviewMessage,
         productId:req.body.productId,
     }
-    const saveReview=await ProductReviewModel.create(reviewDetailsFromReq)
+    const findProduct=await ProductModel.findById(reviewDetailsFromReq.productId)
+    const saveReview=await ProductReviewModel.create(reviewDetailsFromReq);
+    findProduct.review.push(saveReview._id);
+     await findProduct.save()
     const requiredReviewData={
         userName:saveReview.userName,
         userId:saveReview.userId,
@@ -28,7 +31,7 @@ catch(e){
 exports.getReviewOfProductId=async(req,res)=>{
     const productId=req.params.productId
 try{
-    const review=await ProductReviewModel.find({productId})
+    const review=await ProductReviewModel.find({productId:productId})
     res.status(200).send(review)
  }
 catch(e){
