@@ -15,6 +15,7 @@ app.use(cors())
 require('./Routes/user.routes')(app)
 require('./Routes/product.routes')(app)
 require('./Routes/productReview.routes')(app)
+require('./Routes/ProductRating.routes')(app)
 //connection to database
 mongoose.connect(dbConfig.Db_URL)
 const db=mongoose.connection;

@@ -21,6 +21,13 @@ productId:{
       type:mongoose.SchemaTypes.ObjectId,
       ref:'product',
       required:true
-}
+},
+createdAt:{
+        type:Date,
+        default:()=>{
+            return Date.now()
+        },
+        immutable:true
+    }
 })
 module.exports=mongoose.model('rating',ratingSchema)
