@@ -67,3 +67,25 @@ exports.getproductById=async(req,res)=>{
 })
  }
 }
+
+exports.searchProducts=async(req,res)=>{
+ try{
+  const search=req.query.search
+  console.log(search)
+  if(!search){
+    return res.status(400).send({
+      error:"query is required"
+    })
+  }
+  const products=await ProductModel.find({
+    name: { $regex: search } 
+  })
+  console.log(products)
+  res.status(200).send(products)
+ }
+ catch(error){
+  res.status(500).send({
+    error:"an error occured while searching"
+  })
+ }
+}
