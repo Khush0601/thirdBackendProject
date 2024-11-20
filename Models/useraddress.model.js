@@ -4,6 +4,23 @@ const addressSchema=new mongoose.Schema({
     type:mongoose.SchemaTypes.ObjectId,
     ref:'user',
     required:true
- }
+ },
+ street:{
+    type:String,
+    required:true,
+ },
+ city:{
+    type:String,
+    required:true,
+ },
+ state:{
+    type:String,
+    required:true,
+ },
+ pincode:{
+    type:String,
+    required:true,
+ },
+
 })
 module.exports=mongoose.model('userAddress',addressSchema)
