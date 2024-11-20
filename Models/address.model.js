@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 const addressSchema=new mongoose.Schema({
- user:{
+ userId:{
     type:mongoose.SchemaTypes.ObjectId,
     ref:'user',
     required:true
@@ -23,4 +23,4 @@ const addressSchema=new mongoose.Schema({
  },
 
 })
-module.exports=mongoose.model('userAddress',addressSchema)
+module.exports=mongoose.model('address',addressSchema)
