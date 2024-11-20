@@ -28,10 +28,16 @@ const userschema=new mongoose.Schema({
             return 'CUSTOMER'
         }
     },
+   
     productList:{
        type:[mongoose.SchemaTypes.ObjectId],
        ref:"products",
        default:[]
+    },
+    addresses:{
+      type:[mongoose.SchemaTypes.ObjectId],
+      ref:'userAddress',
+      default:[]
     },
     createdAt:{
         type:Date,
