@@ -22,4 +22,12 @@ exports.addAddress=async(req,res)=>{
     res.status(500).send(e.message)
   }
 }
-
+ exports.getAllAddresses=async(req,res)=>{
+  try{
+  const addressList=await UserAddressModel.find({})
+  res.status(200).send(addressList)
+  }
+  catch(e){
+    res.status(500).send(e.message)
+  }
+ }
