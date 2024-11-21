@@ -22,13 +22,15 @@ exports.addAddress=async(req,res)=>{
 
   }
   catch(e){
-    res.status(500).send(e.message)
+    console.log(e)
+    res.status(500).send(e)
   }
 }
+
  exports.getAllAddressesOfUserId=async(req,res)=>{
   const userId=req.params.userId;
   try{
-  const addressList=await UserAddressModel.find({userId})
+  const addressList=await UserAddressModel.find({userId:userId})
   res.status(200).send(addressList)
   }
   catch(e){
