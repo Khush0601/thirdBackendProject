@@ -5,6 +5,17 @@ const addressSchema=new mongoose.Schema({
     ref:'user',
     required:true
  },
+ name:{
+    type:String,
+    required:true,
+ },
+ mobileNo:{
+    type:String,
+    required:true,
+    minlength: 10,
+    maxlength: 10,
+  
+ },
  street:{
     type:String,
     required:true,
@@ -21,6 +32,14 @@ const addressSchema=new mongoose.Schema({
     type:String,
     required:true,
  },
+ typeOfAddress:{
+    type:String,
+    required:true,
+    enum:['Home','Work'],
+    default:()=>{
+      return 'Home'
+    }
+ }
 
 })
 module.exports=mongoose.model('address',addressSchema)

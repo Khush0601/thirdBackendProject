@@ -3,10 +3,13 @@ const UserModel=require("../Models/user.model")
 exports.addAddress=async(req,res)=>{
     const requiredAddressDetails={
         userId:req.body.userId,
+        name:req.body.name,
+        mobileNo:req.body.mobileNo,
         street:req.body.street,
-       city:req.body.city,
-       state:req.body.state,
-       pincode:req.body.pincode,
+        city:req.body.city,
+        state:req.body.state,
+        pincode:req.body.pincode,
+        typeOfAddress:req.body.typeOfAddress
  }
   try{
    const newAddress=await UserAddressModel.create(requiredAddressDetails)
