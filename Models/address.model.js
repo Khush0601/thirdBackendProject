@@ -39,6 +39,10 @@ const addressSchema=new mongoose.Schema({
     default:()=>{
       return 'Home'
     }
+ },
+ isDefault:{
+   type:String,
+   default:false,
  }
 
 })

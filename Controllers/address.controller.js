@@ -37,3 +37,25 @@ exports.addAddress=async(req,res)=>{
     res.status(500).send(e.message)
   }
  }
+
+ exports.setDefaultAddress=async(req,res)=>{
+  const defaultDetails={
+    userId:req.body.userId,
+    addressId:req.body.addressId,
+  }
+  try{
+    await UserAddressModel.updateMany({userId:defaultDetails.userId},{$set:{isDefault:false}});
+    const updateAddress=await UserAddressModel.findByIdAndUpdate(defaultDetails.addressId,{$set:{isDefault:true}},{new:true})
+    res.status(200).send({
+      message:'default address updated',
+      updateAddress
+    })
+  }
+  catch(e){
+    console.log(e)
+   res.status(500).send({
+    message:'error while setting default',
+    e
+   })
+  }
+ }
