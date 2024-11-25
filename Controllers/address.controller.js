@@ -71,7 +71,8 @@ exports.addAddress=async(req,res)=>{
       typeOfAddress:req.body.typeOfAddress,
   }
  try{
-  const updateAddress=await UserAddressModel.findByIdAndUpdate(addressId,{$set:{updatedDetails}},{new:true})
+  const updateAddress=await UserAddressModel.findByIdAndUpdate(addressId,{$set:{...updatedDetails}},{new:true})
+  
   res.status(200).send({
     message:'address updated',
     
