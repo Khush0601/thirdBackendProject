@@ -59,3 +59,29 @@ exports.addAddress=async(req,res)=>{
    })
   }
  }
+ exports.updateAddress=async(req,res)=>{
+  let addressId=req.body.addressId
+  const updatedDetails={
+      name:req.body.name,
+      mobileNo:req.body.mobileNo,
+      pincode:req.body.pincode,
+      state:req.body.state,
+      street:req.body.street,
+      city:req.body.city,
+      typeOfAddress:req.body.typeOfAddress,
+  }
+ try{
+  const updateAddress=await UserAddressModel.findByIdAndUpdate(addressId,{$set:{updatedDetails}},{new:true})
+  res.status(200).send({
+    message:'address updated',
+    
+  })
+ }
+ catch(e){
+  console.log(e)
+   res.status(500).send({
+    message:'error while setting default',
+    e
+   })
+ }
+ }
