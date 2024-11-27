@@ -96,7 +96,7 @@ exports.addAddress=async(req,res)=>{
       message:'user not found'
     })
   }
-  const defaultAddress=user.find((userDetails)=>userDetails.isDefault==='true')
+  const defaultAddress=user.find((addressDetails)=>addressDetails.isDefault==='true')
   // console.log('default',defaultAddress)
   if(!defaultAddress){
     return res.status(404).send({
