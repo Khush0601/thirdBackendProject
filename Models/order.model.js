@@ -17,10 +17,12 @@ addressId:{
     required:true
 },
 paymentStatus:{
-     true:String,
+     type:String,
      enum:['pending','success','failure'],
-     default:'pending'
+     default:()=>{
+        return 'pending'
 },
+     },
 transactionId:{
  type:String,
  
