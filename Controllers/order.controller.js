@@ -16,6 +16,7 @@ productImage:product.image,
 Amount:product.price,
 
  }
+ 
  let savedOrder=await orderModel.create(orderObj)
  res.status(201).send({
     message:'order created'
