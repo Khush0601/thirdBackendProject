@@ -4,6 +4,7 @@ const express=require("express")
 const bodyParser=require('body-parser')
 const mongoose=require("mongoose")
 const cors=require("cors")
+require('dotenv').config()
 const app=express()
 
 //middleware for converting js objects into json
@@ -34,3 +35,7 @@ db.once('open',()=>{
 app.listen(serverConfig.PORT,()=>{
     console.log('server started on PORT:',serverConfig.PORT)
 })
+
+
+
+
