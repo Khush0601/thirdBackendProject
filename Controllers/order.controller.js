@@ -86,3 +86,14 @@ catch(e){
  })
 }
 }
+
+exports.getAllOrdersOfUserId=async(req,res)=>{
+  const userId=req.params.userId;
+  try{
+ const orderList=await orderModel.find({userId:userId})
+ res.status(200).send(orderList)
+  }
+  catch(e){
+ res.status(500).send(e.message)
+  }
+}
