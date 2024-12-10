@@ -19,6 +19,7 @@ require('./Routes/productReview.routes')(app)
 require('./Routes/ProductRating.routes')(app)
 require('./Routes/address.routes')(app)
 require('./Routes/order.routes')(app)
+require('./Routes/testimonial.routes')(app)
 
 //connection to database
 mongoose.connect(dbConfig.Db_URL)
