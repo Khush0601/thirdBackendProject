@@ -25,7 +25,7 @@ try{
 catch(err){
     console.log("error while registering user",err.message)
     res.status(500).send({
-     message:err?.message??"some internal error while registering"
+     message:err?.message
  })
      
 }
