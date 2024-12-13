@@ -1,5 +1,9 @@
 const bcrypt=require("bcrypt")
 const UserModel=require('../Models/user.model')
+const jwt = require('jsonwebtoken');
+const serverConfig=require('../Configs/server_configs')
+const TokenToLeave=30 //in days
+
 exports.signUp=async(req,res)=>{
 try{
     const userObj={
@@ -32,6 +36,7 @@ catch(err){
 }
 
 exports.signIn=async(req,res)=>{
+   
 try{
    // read entered data
 const userIdFromReq=req.body.userId;
@@ -55,6 +60,9 @@ if(!isValidPassword){
 }
 // if entered userid and password is valid return userDetails
 const{password,...restData}=validUserData._doc
+const token = jwt.sign({ userId: restData._id},serverConfig.JWT_SECRET,{ expiresIn: ((60 * 60)*24)*TokenToLeave });
+console.log(token)
+restData.token=token;
 return res.status(200).send(restData)
 }
 catch(err){
@@ -62,5 +70,22 @@ catch(err){
  res.status(500).send({
    message:"internal server error while signIn"
  })
+}
+}
+exports.autoLogin=async(req,res)=>{
+try{
+   const token=req.params.tokenId;
+const decoded = jwt.verify(token,serverConfig.JWT_SECRET );
+let userId=decoded.userId
+
+const validUserData=await UserModel.findById(userId)
+const{password,...restData}=validUserData._doc
+return res.status(200).send(restData)
+}
+catch(e){
+   res.status(500).send({
+      message:"internal server error while autoLogin"
+    })
+
 }
 }
