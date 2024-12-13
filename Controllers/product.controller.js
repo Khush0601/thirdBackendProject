@@ -90,3 +90,16 @@ exports.searchProducts=async(req,res)=>{
  }
 }
 
+exports.getLatestProduct=async(req,res)=>{
+  try{
+    const latestItems = await ProductModel.find()
+    .sort({ createdAt: -1 }) 
+    .limit(10)
+    res.status(200).send(latestItems)
+  }
+  catch(e){
+    res.status(200).send({
+      message:e
+    })
+  }
+}
