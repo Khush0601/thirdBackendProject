@@ -94,7 +94,7 @@ exports.getLatestProduct=async(req,res)=>{
   try{
     const latestItems = await ProductModel.find()
     .sort({ createdAt: -1 }) 
-    .limit(10)
+    .limit(7)
     res.status(200).send(latestItems)
   }
   catch(e){
