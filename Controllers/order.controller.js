@@ -7,7 +7,7 @@ exports.onPayment=async(req,res)=>{
     const productId=req.body.productId;
     const userId=req.body.userId;
     const addressId=req.body.addressId;
-    console.log(process.env)
+    //console.log(process.env)
     Cashfree.XClientId = process.env.XCLIENT_ID;
     Cashfree.XClientSecret = process.env.XCLIENT_SECRET;
     Cashfree.XEnvironment = Cashfree.Environment.SANDBOX;
@@ -38,11 +38,11 @@ Amount:product.price,
     }
 };
  let paymentResponse=await Cashfree.PGCreateOrder("2023-08-01", request)
- console.log(paymentResponse)
+ //console.log(paymentResponse)
  res.status(200).send(paymentResponse.data)
 }
 catch(e){
-// console.log(e)
+// //console.log(e)
 res.status(500).send(
     {
          message:'server error'
@@ -70,7 +70,7 @@ exports.onPaymentStatus = async (req,res) => {
       }
   
      let savedOrder=await orderModel.findById(getOrderResponse.data[0].order_id);
-     console.log('saved order',savedOrder)
+     //console.log('saved order',savedOrder)
         savedOrder.paymentStatus=orderStatus,
         savedOrder.transactionId=getOrderResponse.data[0].cf_order_id
         await savedOrder.save()
@@ -80,7 +80,7 @@ exports.onPaymentStatus = async (req,res) => {
 
 }
 catch(e){
- console.log(e)
+ //console.log(e)
  res.status(500).send({
     message:'server error'
  })

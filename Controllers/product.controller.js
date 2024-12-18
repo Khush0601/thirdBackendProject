@@ -2,7 +2,7 @@ const productModel = require('../Models/product.model')
 const ProductModel=require('../Models/product.model')
 const mongoose=require("mongoose")
 exports.createProduct=async(req,res)=>{
-    console.log(req.body)
+    //console.log(req.body)
    try{
     const productDataFromReq={
         name:req.body.name,
@@ -24,7 +24,7 @@ exports.createProduct=async(req,res)=>{
       res.status(201).send(savedProduct)
    }
    catch(err){
-    console.log('error while creating book',err.message)
+    //console.log('error while creating book',err.message)
     res.status(500).send({
         message:err.message??'server error'
     })
@@ -51,7 +51,7 @@ exports.getproductById=async(req,res)=>{
   }
  try{
   const productDetailsById=await productModel.findById(productId)
-  console.log(productDetailsById)
+  //console.log(productDetailsById)
   if(!productDetailsById){
      return res.status(404).send({
       message:'product not found'
@@ -71,7 +71,7 @@ exports.getproductById=async(req,res)=>{
 exports.searchProducts=async(req,res)=>{
  try{
   const search=req.query.search
-  console.log(search)
+  //console.log(search)
   if(!search){
     return res.status(400).send({
       error:"query is required"
@@ -80,7 +80,7 @@ exports.searchProducts=async(req,res)=>{
   const products=await ProductModel.find({
     name: { $regex: search } 
   })
-  console.log(products)
+  //console.log(products)
   res.status(200).send(products)
  }
  catch(error){

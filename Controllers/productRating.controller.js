@@ -10,20 +10,20 @@ exports.addRating=async(req,res)=>{
   try{
   const findProduct=await ProductModel.findById(ratingDetailsFromReq.productId) 
   const saveRating=await ProductRatingModel.create(ratingDetailsFromReq)
-  console.log(saveRating)
+  //console.log(saveRating)
   findProduct.rating.push(saveRating._id)
   await findProduct.save()
   res.status(201).send(saveRating)
   }
   catch(e){
-    console.log(e.message)
+    //console.log(e.message)
    res.status(500).send(e.message)
   }
 }
 
 exports.getRatingOfProductId=async(req,res)=>{
     const productId=req.params.productId
-    // console.log(productId)
+    // //console.log(productId)
     try{
     const ratingList=await ProductRatingModel.find({productId:productId})
     const total=ratingList.reduce((acc,curr)=>acc+curr.ratingCount,0)
@@ -33,7 +33,7 @@ exports.getRatingOfProductId=async(req,res)=>{
     })
     }
     catch(e){
-        console.log(e.message)
+        //console.log(e.message)
     res.status(500).send(e.message)
     }
 }

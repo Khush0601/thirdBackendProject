@@ -10,7 +10,7 @@ exports.createTestimonial=async(req,res)=>{
      res.status(201).send(saveTestimonialsDetails)
     }
     catch(e){
-         console.log(e)
+         //console.log(e)
          res.status(500).send(e)
     }
 }
@@ -21,7 +21,7 @@ exports.getTestimonials=async(req,res)=>{
    res.status(200).send(getAllTestimonials)
     }
     catch(e){
-        console.log(e)
+        //console.log(e)
    res.status(500).send(e)
     }
 }

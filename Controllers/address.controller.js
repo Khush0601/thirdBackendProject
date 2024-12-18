@@ -22,7 +22,7 @@ exports.addAddress=async(req,res)=>{
 
   }
   catch(e){
-    console.log(e)
+    //console.log(e)
     res.status(500).send(e)
   }
 }
@@ -52,7 +52,7 @@ exports.addAddress=async(req,res)=>{
     })
   }
   catch(e){
-    console.log(e)
+    //console.log(e)
    res.status(500).send({
     message:'error while setting default',
     e
@@ -78,7 +78,7 @@ exports.addAddress=async(req,res)=>{
   })
  }
  catch(e){
-  console.log(e)
+  //console.log(e)
    res.status(500).send({
     message:'error while updating address',
     e
@@ -90,14 +90,14 @@ exports.addAddress=async(req,res)=>{
   const userId=req.params.userId;
   try{
   const user=await UserAddressModel.find({userId:userId})
-  // console.log(user)
+  // //console.log(user)
   if((!user)){
     return res.status(200).send({
       message:'user not found'
     })
   }
   const defaultAddress=user.find((addressDetails)=>addressDetails.isDefault==='true')
-  // console.log('default',defaultAddress)
+  // //console.log('default',defaultAddress)
   if(!defaultAddress){
     return res.status(404).send({
       message:"default address not added yet"
@@ -106,7 +106,7 @@ exports.addAddress=async(req,res)=>{
   res.status(200).send(defaultAddress)
 }
   catch(e){
-    console.log(e)
+    //console.log(e)
     res.status(500).send({
      message:'error while getting default',
      e

@@ -12,7 +12,7 @@ try{
         userId:req.body.userId,
         password:bcrypt.hashSync(req.body.password,8),
      }
-     console.log(userObj)
+     //console.log(userObj)
      const savingUser=await UserModel.create(userObj)
      const message={
         message:'register successfully'
@@ -27,7 +27,7 @@ try{
       }
 }
 catch(err){
-    console.log("error while registering user",err.message)
+    //console.log("error while registering user",err.message)
     res.status(500).send({
      message:err?.message
  })
@@ -43,7 +43,7 @@ const userIdFromReq=req.body.userId;
 const passwordFromReq=req.body.password;
 // checking enteredUserId in database if present then fetch user Details
 const validUserData=await UserModel.findOne({userId:userIdFromReq})
-// console.log(validUserData)
+// //console.log(validUserData)
 //if userid is not present in databse
 if(!validUserData){
   return res.status(401).send({
@@ -61,12 +61,12 @@ if(!isValidPassword){
 // if entered userid and password is valid return userDetails
 const{password,...restData}=validUserData._doc
 const token = jwt.sign({ userId: restData._id},serverConfig.JWT_SECRET,{ expiresIn: ((60 * 60)*24)*TokenToLeave });
-console.log(token)
+//console.log(token)
 restData.token=token;
 return res.status(200).send(restData)
 }
 catch(err){
- console.log('error while signIn',err.message)
+ //console.log('error while signIn',err.message)
  res.status(500).send({
    message:"internal server error while signIn"
  })
