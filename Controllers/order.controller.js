@@ -1,6 +1,7 @@
 const productModel=require("../Models/product.model")
 const orderModel=require("../Models/order.model")
 const addressModel =require('../Models/address.model')
+const ServerConfig=require("../Configs/server_configs")
 const {Cashfree}=require("cashfree-pg")
 exports.onPayment=async(req,res)=>{
  try{
@@ -34,7 +35,7 @@ Amount:product.price,
         "customer_phone": address.mobileNo
     },
     "order_meta": {
-        "return_url": `http://localhost:3000/home/payment/success/${savedOrder._id}`
+        "return_url": `${ServerConfig.ClientBase_Url}/home/payment/success/${savedOrder._id}`
     }
 };
  let paymentResponse=await Cashfree.PGCreateOrder("2023-08-01", request)
