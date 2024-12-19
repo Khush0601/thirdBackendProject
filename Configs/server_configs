@@ -1,6 +1,6 @@
 module.exports={
     PORT:8888,
     JWT_SECRET:'khush',
-    ClientBase_Url:'https://aquamarine-malabi-ff3950.netlify.app/'
+    ClientBase_Url:'https://aquamarine-malabi-ff3950.netlify.app'
 
 }
