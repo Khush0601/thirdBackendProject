@@ -29,6 +29,7 @@ exports.addAddress=async(req,res)=>{
 
  exports.getAllAddressesOfUserId=async(req,res)=>{
   const userId=req.params.userId;
+  console.log(userId)
   try{
   const addressList=await UserAddressModel.find({userId:userId})
   res.status(200).send(addressList)

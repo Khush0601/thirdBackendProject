@@ -42,7 +42,7 @@ try{
 const userIdFromReq=req.body.userId;
 const passwordFromReq=req.body.password;
 // checking enteredUserId in database if present then fetch user Details
-const validUserData=await UserModel.findOne({userId:userIdFromReq})
+const validUserData=await UserModel.findOne({$or:[{userId:userIdFromReq},{email:userIdFromReq}]})
 // //console.log(validUserData)
 //if userid is not present in databse
 if(!validUserData){
