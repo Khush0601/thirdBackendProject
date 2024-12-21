@@ -1,4 +1,4 @@
 module.exports={
     Db_URL:"mongodb+srv://ksingh200601:leuKgeBrnbw5H86F@cluster0.pbb4g.mongodb.net/"
-
+    
 }

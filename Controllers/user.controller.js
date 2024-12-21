@@ -8,7 +8,7 @@ exports.signUp=async(req,res)=>{
 try{
     const userObj={
         name:req.body.name,
-        email:req.body.email,
+        email:req.body.email.toLowerCase(),
         userId:req.body.userId,
         password:bcrypt.hashSync(req.body.password,8),
      }
@@ -39,7 +39,8 @@ exports.signIn=async(req,res)=>{
    
 try{
    // read entered data
-const userIdFromReq=req.body.userId;
+   let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const userIdFromReq=emailRegex.test(req.body.userId)?req.body.userId.toLowerCase():req.body.userId;
 const passwordFromReq=req.body.password;
 // checking enteredUserId in database if present then fetch user Details
 const validUserData=await UserModel.findOne({$or:[{userId:userIdFromReq},{email:userIdFromReq}]})
